@@ -1,5 +1,3 @@
-import 'package:bloc_practice/data/repository/user/user_repository.dart';
-import 'package:bloc_practice/data/repository/user/user_repository_iml.dart';
 import 'package:bloc_practice/logic/bloc/user_bloc.dart';
 import 'package:bloc_practice/ui/user_list/model/user_list_response.dart';
 import 'package:flutter/material.dart';
@@ -14,18 +12,10 @@ class UserListPage extends StatefulWidget {
 }
 
 class _UserListPageState extends State<UserListPage> {
-  List<UserData> _userList = [];
   @override
   void initState() {
     super.initState();
     BlocProvider.of<UserBloc>(context).add(GetUserList(page: 1));
-    UserRepository userRepository = UserRepositoryIml();
-
-    userRepository.getUserList(page: 1).then((userListResponse) {
-      setState(() {
-        if (userListResponse.data != null) _userList = userListResponse.data!;
-      });
-    });
   }
 
   @override

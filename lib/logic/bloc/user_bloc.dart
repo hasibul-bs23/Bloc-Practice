@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:bloc_practice/data/repository/user/user_repository.dart';
+import 'package:bloc_practice/di/locator/locator.dart';
 import 'package:bloc_practice/ui/user_list/model/user_list_response.dart';
 import 'package:meta/meta.dart';
 
@@ -9,9 +10,9 @@ part 'user_event.dart';
 part 'user_state.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
-  UserRepository userRepository;
+  final UserRepository userRepository = locator.get<UserRepository>();
 
-  UserBloc({required this.userRepository}) : super(UserInitial());
+  UserBloc() : super(UserInitial());
 
   @override
   Stream<UserState> mapEventToState(
